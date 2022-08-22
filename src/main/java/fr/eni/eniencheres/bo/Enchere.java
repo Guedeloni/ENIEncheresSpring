@@ -1,6 +1,7 @@
 package fr.eni.eniencheres.bo;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,11 +28,11 @@ public class Enchere {
 
     @ManyToOne
     @JoinColumn(name = "article_id")
-    @JsonBackReference
+    @JsonIgnore
     private Article article;
 
     @ManyToOne
-    @JsonManagedReference
+    @JsonIgnore
     private Utilisateur utilisateur;
 
     public Enchere(long id, LocalDate dateEnchere, int montantEnchere, Article article, Utilisateur utilisateur) {

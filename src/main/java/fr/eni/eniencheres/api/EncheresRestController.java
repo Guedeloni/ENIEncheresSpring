@@ -34,7 +34,7 @@ public class EncheresRestController {
     public Enchere getEnchereById(@PathVariable long id) {return enchereService.getEnchereById(id);}
 
 
-    @PostMapping//("{articleId}/{utilisateurId}")
+    @PostMapping("/{articleId}/{utilisateurId}")
     public Enchere postEnchere(@PathVariable long articleId,@PathVariable long utilisateurId, @RequestBody Enchere enchere) {
 
 
