@@ -37,12 +37,17 @@ public class Utilisateur {
     @Column(nullable = false)
     private String email;
 
+    @Column(nullable = false)
     private String telephone;
+    @Column(nullable = false)
     private String rue;
+    @Column(nullable = false)
     private String codePostal;
+    @Column(nullable = false)
     private String ville;
 
     @NotBlank
+    @Column(nullable = false)
     private String motDePasse;
 
     @CreditCardNumber
@@ -71,6 +76,7 @@ public class Utilisateur {
         String pseudo = ((Utilisateur) utilisateur).getPseudo();
         return this.pseudo.equals(pseudo);
     }
+
 
     public Utilisateur(String pseudo, String nom, String prenom, String email,
                        String telephone, String rue, String codePostal, String ville,

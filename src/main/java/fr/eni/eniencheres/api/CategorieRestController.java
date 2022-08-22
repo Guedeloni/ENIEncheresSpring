@@ -20,7 +20,7 @@ public class CategorieRestController {
     public List<Categorie> getlistCategories(){return categorieService.listCategorie();}
 
 
-    @GetMapping("/id")
+    @GetMapping("{id}")
      public Categorie getCategorieById(@PathVariable long id) {return categorieService.getCategorieById(id);}
 
 

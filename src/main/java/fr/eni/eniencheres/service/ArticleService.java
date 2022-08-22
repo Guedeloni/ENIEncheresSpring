@@ -15,6 +15,4 @@ public interface ArticleService {
     public Article getArticleById(long id);
 
 
-
-
 }
