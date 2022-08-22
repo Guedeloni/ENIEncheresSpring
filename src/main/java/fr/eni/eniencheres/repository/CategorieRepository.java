@@ -1,0 +1,13 @@
+package fr.eni.eniencheres.repository;
+
+import fr.eni.enchere.trainingenchere.Bo.Categorie;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CategorieRepository extends JpaRepository<Categorie,Long> {
+
+
+    public Categorie findByLibelle(String libelle);
+
+    public boolean existsByLibelle(String libelle);
+
+}
