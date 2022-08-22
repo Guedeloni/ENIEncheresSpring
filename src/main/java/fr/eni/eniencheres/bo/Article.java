@@ -1,17 +1,12 @@
 package fr.eni.eniencheres.bo;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Future;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -20,7 +15,7 @@ import java.util.List;
 @Getter
 @ToString
 @NoArgsConstructor
-
+@AllArgsConstructor
 public class Article {
 
     @Id
@@ -29,6 +24,7 @@ public class Article {
 
     @NotBlank
     private String nomArticle;
+
 
     private String description;
 
@@ -43,22 +39,22 @@ public class Article {
     private int prixvente;
 
     // 1 = Creee ; 2 = En cours ; 3 = Terminee ; 4 = Retrait effectue
-    @Size(min=1, max=4)
-    private byte etatVente;
+    @Min(1) @Max(4)
+    private int etatVente;
 
     private String imageURL;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonIgnore
     private Utilisateur acheteur;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonIgnore
     private Utilisateur vendeur;
 
     @OneToMany
     @JoinColumn(name = "article_id")
-git    @JsonManagedReference
+    @JsonIgnore
     private List<Enchere> enchereList;
 
     @ManyToOne
@@ -68,25 +64,5 @@ git    @JsonManagedReference
     private Categorie categorie;
 
 
-    public Article(long noArticle, String nomArticle, String description,
-                   LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
-                   int prixInitial, int prixvente, byte etatVente, String imageURL,
-                   Utilisateur acheteur, Utilisateur vendeur, List<Enchere> enchereList,
-                   Retrait retrait, Categorie categorie) {
-        this.noArticle = noArticle;
-        this.nomArticle = nomArticle;
-        this.description = description;
-        this.dateDebutEncheres = dateDebutEncheres;
-        this.dateFinEncheres = dateFinEncheres;
-        this.prixInitial = prixInitial;
-        this.prixvente = prixvente;
-        this.etatVente = etatVente;
-        this.imageURL = imageURL;
-        this.acheteur = acheteur;
-        this.vendeur = vendeur;
-        this.enchereList = enchereList;
-        this.retrait = retrait;
-        this.categorie = categorie;
-    }
 
 }
