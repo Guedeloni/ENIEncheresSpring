@@ -4,6 +4,7 @@ package fr.eni.eniencheres.bo;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,21 +14,20 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 public class Categorie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    private int noCategorie;
+    private long noCategorie;
 
     private String libelle;
 
-    public Categorie(String libelle) {
-        libelle = libelle;
+    public Categorie(long noCategorie, String libelle) {
+        this.noCategorie = noCategorie;
+        this.libelle = libelle;
     }
-
 
     @Override
     public boolean equals(Object categorie) {

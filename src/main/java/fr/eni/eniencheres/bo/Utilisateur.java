@@ -1,34 +1,39 @@
 package fr.eni.eniencheres.bo;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.validator.constraints.CreditCardNumber;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
 @Setter
 @Getter
+@ToString
 @NoArgsConstructor
 public class Utilisateur {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
+    @NotBlank
     @Column(nullable = false)
     private String pseudo;
 
-
+    @NotBlank
     @Column(nullable = false)
     private String nom;
 
+    @NotBlank
     @Column(nullable = false)
     private String prenom;
 
+    @Email
     @Column(nullable = false)
     private String email;
 
@@ -40,18 +45,30 @@ public class Utilisateur {
     private String codePostal;
     @Column(nullable = false)
     private String ville;
+
+    @NotBlank
     @Column(nullable = false)
     private String motDePasse;
-    private long credit;
+
+    @CreditCardNumber
+    long credit;
+
     private boolean admin;
 
     @OneToMany
-
-    private List<Enchere> enchere;
+    @JoinColumn(name = "utilisateur_id")
+    @JsonManagedReference
+    private List<Enchere> enchereList;
 
     @OneToMany
+    @JoinColumn(name = "acheteur_id")
     @JsonManagedReference
-    private  List <Article> article;
+    private  List <Article> articleAcheteList;
+
+    @OneToMany
+    @JoinColumn(name = "vendeur_id")
+    @JsonManagedReference
+    private  List <Article> articleVenduList;
 
 
     @Override
@@ -60,7 +77,11 @@ public class Utilisateur {
         return this.pseudo.equals(pseudo);
     }
 
-    public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse, long credit) {
+
+    public Utilisateur(String pseudo, String nom, String prenom, String email,
+                       String telephone, String rue, String codePostal, String ville,
+                       String motDePasse, long credit, boolean admin,
+                       List<Enchere> enchereList, List<Article> articleAcheteList, List<Article> articleVenduList) {
         this.pseudo = pseudo;
         this.nom = nom;
         this.prenom = prenom;
@@ -71,5 +92,10 @@ public class Utilisateur {
         this.ville = ville;
         this.motDePasse = motDePasse;
         this.credit = credit;
+        this.admin = admin;
+        this.enchereList = enchereList;
+        this.articleAcheteList = articleAcheteList;
+        this.articleVenduList = articleVenduList;
+
     }
 }
