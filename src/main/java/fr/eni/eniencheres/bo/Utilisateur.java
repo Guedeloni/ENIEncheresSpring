@@ -32,10 +32,15 @@ public class Utilisateur {
     @Column(nullable = false)
     private String email;
 
-    private long telephone;
+    @Column(nullable = false)
+    private String telephone;
+    @Column(nullable = false)
     private String rue;
+    @Column(nullable = false)
     private String codePostal;
+    @Column(nullable = false)
     private String ville;
+    @Column(nullable = false)
     private String motDePasse;
     private long credit;
     private boolean admin;
@@ -55,7 +60,7 @@ public class Utilisateur {
         return this.pseudo.equals(pseudo);
     }
 
-    public Utilisateur(String pseudo, String nom, String prenom, String email, long telephone, String rue, String codePostal, String ville, String motDePasse, long credit) {
+    public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse, long credit) {
         this.pseudo = pseudo;
         this.nom = nom;
         this.prenom = prenom;
