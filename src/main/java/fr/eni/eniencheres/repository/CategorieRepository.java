@@ -1,6 +1,6 @@
 package fr.eni.eniencheres.repository;
 
-import fr.eni.enchere.trainingenchere.Bo.Categorie;
+import fr.eni.eniencheres.bo.Categorie;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CategorieRepository extends JpaRepository<Categorie,Long> {

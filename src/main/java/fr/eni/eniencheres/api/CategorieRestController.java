@@ -1,8 +1,5 @@
 package fr.eni.eniencheres.api;
 
-
-import fr.eni.enchere.trainingenchere.Bo.Categorie;
-import fr.eni.enchere.trainingenchere.service.CategorieService;
 import fr.eni.eniencheres.bo.Categorie;
 import fr.eni.eniencheres.service.CategorieService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,9 +1,8 @@
 package fr.eni.eniencheres.service.Jpa;
 
-
-import fr.eni.enchere.trainingenchere.Bo.Categorie;
-import fr.eni.enchere.trainingenchere.repository.CategorieRepository;
-import fr.eni.enchere.trainingenchere.service.CategorieService;
+import fr.eni.eniencheres.bo.Categorie;
+import fr.eni.eniencheres.repository.CategorieRepository;
+import fr.eni.eniencheres.service.CategorieService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,14 +10,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@Slf4j
-
 public class CategorieJapImpl  implements CategorieService {
-
 
     @Autowired
     CategorieRepository categorieRepository;
-
 
     @Override
     public void addCategorie(Categorie categorie) throws Exception {

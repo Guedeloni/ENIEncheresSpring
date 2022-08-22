@@ -1,22 +1,18 @@
 package fr.eni.eniencheres.service.Jpa;
 
-import fr.eni.enchere.trainingenchere.Bo.Utilisateur;
-import fr.eni.enchere.trainingenchere.repository.UtilisateurRepository;
-import fr.eni.enchere.trainingenchere.service.UtilisateurService;
-import lombok.extern.slf4j.Slf4j;
+import fr.eni.eniencheres.bo.Utilisateur;
+import fr.eni.eniencheres.repository.UtilisateurRepository;
+import fr.eni.eniencheres.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service @Slf4j
+@Service
 public class UtilisateurJpaImpl implements UtilisateurService {
 
     @Autowired
-    UtilisateurRepository  utilisateurRepository;
-
-
-
+    UtilisateurRepository utilisateurRepository;
 
     @Override
     public void addUtilisateur(Utilisateur utilisateur)  {
