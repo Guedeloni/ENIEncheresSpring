@@ -14,28 +14,24 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @NoArgsConstructor
-
 public class Categorie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-
     private int noCategorie;
 
-    private String Libelle;
-
-
+    private String libelle;
 
     public Categorie(String libelle) {
-        Libelle = libelle;
+        libelle = libelle;
     }
 
 
     @Override
     public boolean equals(Object categorie) {
         String libelle = ((Categorie) categorie).getLibelle();
-        return this.Libelle.equals(Libelle) ;
+        return this.libelle.equals(libelle) ;
     }
 }
