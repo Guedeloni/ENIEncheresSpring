@@ -27,6 +27,6 @@ public class UtilisateurJpaImpl implements UtilisateurService {
 
     @Override
     public Utilisateur getMembreByPseudo(String pseudo) {
-        return utilisateurRepository.findById(pseudo).get();
+        return utilisateurRepository.findByPseudo(pseudo);
     }
 }
