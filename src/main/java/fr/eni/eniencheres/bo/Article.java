@@ -58,7 +58,7 @@ public class Article {
 
     @OneToMany
     @JoinColumn(name = "article_id")
-    @JsonManagedReference
+git    @JsonManagedReference
     private List<Enchere> enchereList;
 
     @ManyToOne
