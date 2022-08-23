@@ -53,8 +53,7 @@ public class Utilisateur {
     @Column(nullable = false)
     private String motDePasse;
 
-    /*@CreditCardNumber*/
-    long credit;
+    private long credit;
 
     private boolean admin;
 
