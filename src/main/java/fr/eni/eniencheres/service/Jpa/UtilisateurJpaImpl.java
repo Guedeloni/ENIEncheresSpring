@@ -35,5 +35,11 @@ public class UtilisateurJpaImpl implements UtilisateurService {
         return utilisateurRepository.findById(id).get();
     }
 
+    @Override
+    public void deleteUtilisateurById(Long id) {
+        utilisateurRepository.deleteById(id);
+
+    }
+
 
 }

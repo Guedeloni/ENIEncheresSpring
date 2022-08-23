@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 @Service
+
 public class ArticleJpaImpl implements ArticleService {
 
     @Autowired
@@ -28,5 +28,10 @@ public class ArticleJpaImpl implements ArticleService {
     @Override
     public Article getArticleById(long id) {
         return articleRepository.findById(id).get();
+    }
+
+    @Override
+    public void deleteArticleById(Long id) { articleRepository.deleteById(id);
+
     }
 }

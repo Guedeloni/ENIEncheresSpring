@@ -12,4 +12,8 @@ public interface UtilisateurService {
 
     public   Utilisateur getUtilisateurByPseudo (String pseudo);
     public   Utilisateur getUtilisateurById( long id);
+
+    public  void deleteUtilisateurById(Long id);
+
+
 }

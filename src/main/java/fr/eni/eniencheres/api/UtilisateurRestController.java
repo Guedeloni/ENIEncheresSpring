@@ -28,4 +28,11 @@ public class UtilisateurRestController {
         utilisateurService.addUtilisateur(utilisateur);
         return utilisateur;
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteUtilisateur(@PathVariable("id") Long id) {
+        if(id !=null) {
+            utilisateurService.deleteUtilisateurById(id);
+        }
+    }
 }

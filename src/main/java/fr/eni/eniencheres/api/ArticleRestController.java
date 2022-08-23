@@ -36,4 +36,10 @@ public class ArticleRestController {
 
         return article;
     }
+    @DeleteMapping("/{id}")
+    public void deleteArticle(@PathVariable("id") Long id) {
+        if(id !=null) {
+            articleService.deleteArticleById(id);
+        }
+    }
 }

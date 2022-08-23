@@ -9,4 +9,8 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long >
 
 
     public Utilisateur findByPseudo(String pseudo);
+
+
+
+
 }
