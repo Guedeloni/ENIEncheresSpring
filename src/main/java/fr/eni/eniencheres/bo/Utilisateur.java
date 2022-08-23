@@ -72,12 +72,26 @@ public class Utilisateur {
 //    @JsonManagedReference
     private  List <Article> articleVenduList;
 
+
+
     @Override
     public boolean equals(Object utilisateur) {
         String pseudo = ((Utilisateur) utilisateur).getPseudo();
         return this.pseudo.equals(pseudo);
     }
 
-
-
+    public Utilisateur(long id, String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse, long credit, boolean admin) {
+        this.id = id;
+        this.pseudo = pseudo;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.telephone = telephone;
+        this.rue = rue;
+        this.codePostal = codePostal;
+        this.ville = ville;
+        this.motDePasse = motDePasse;
+        this.credit = credit;
+        this.admin = admin;
+    }
 }
