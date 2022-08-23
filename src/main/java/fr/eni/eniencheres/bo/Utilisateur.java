@@ -62,17 +62,16 @@ public class Utilisateur {
     @JoinColumn(name = "utilisateur_id")
     @JsonIgnore
     private List<Enchere> enchereList;
-    /*
+
     @OneToMany
     @JoinColumn(name = "acheteur_id")
-    @JsonManagedReference
+//    @JsonManagedReference
     private  List <Article> articleAcheteList;
 
     @OneToMany
     @JoinColumn(name = "vendeur_id")
-    @JsonManagedReference
+//    @JsonManagedReference
     private  List <Article> articleVenduList;
-    */
 
     @Override
     public boolean equals(Object utilisateur) {
