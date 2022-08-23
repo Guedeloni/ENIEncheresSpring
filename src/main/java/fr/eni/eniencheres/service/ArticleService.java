@@ -17,5 +17,7 @@ public interface ArticleService {
 
     public  void deleteArticleById(Long id);
 
+    public void updateArticle(Article article);
+
 
 }

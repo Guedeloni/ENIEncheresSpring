@@ -54,4 +54,9 @@ public class ArticleRestController {
             articleService.deleteArticleById(id);
         }
     }
+
+    @PutMapping("/{id}")
+    public void updateArticle(@RequestBody Article article) {
+        articleService.updateArticle(article);
+    }
 }

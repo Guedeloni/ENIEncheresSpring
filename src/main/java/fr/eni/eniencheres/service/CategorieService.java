@@ -12,4 +12,6 @@ public void addCategorie (Categorie categorie) throws Exception;
 public List<Categorie> listCategorie();
 
 public Categorie getCategorieById(long id);
+
+public  void deleteCategorieeById(Long id);
 }

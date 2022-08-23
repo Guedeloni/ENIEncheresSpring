@@ -34,4 +34,9 @@ public class ArticleJpaImpl implements ArticleService {
     public void deleteArticleById(Long id) { articleRepository.deleteById(id);
 
     }
+
+    @Override
+    public void updateArticle(Article article) {
+        articleRepository.save(article);
+    }
 }

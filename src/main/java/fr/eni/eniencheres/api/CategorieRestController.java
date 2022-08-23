@@ -33,6 +33,12 @@ public class CategorieRestController {
             return categorie;
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteCategorie(@PathVariable("id") Long id) {
+        if (id != null) {
+            categorieService.deleteCategorieeById(id);
+        }
 
+    }
 
 }

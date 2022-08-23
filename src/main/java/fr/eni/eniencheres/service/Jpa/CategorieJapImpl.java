@@ -33,4 +33,11 @@ public class CategorieJapImpl  implements CategorieService {
     public Categorie getCategorieById(long id) {
         return categorieRepository.findById(id).get();
     }
+
+    @Override
+    public void deleteCategorieeById(Long id) {
+        categorieRepository.findById(id);
+    }
+
+
 }

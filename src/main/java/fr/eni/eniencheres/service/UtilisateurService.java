@@ -1,5 +1,6 @@
 package fr.eni.eniencheres.service;
 
+import fr.eni.eniencheres.bo.Article;
 import fr.eni.eniencheres.bo.Utilisateur;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public interface UtilisateurService {
     public   Utilisateur getUtilisateurById( long id);
 
     public  void deleteUtilisateurById(Long id);
+    public void updateUtilisateur(Utilisateur utilisateur);
 
 
 }
