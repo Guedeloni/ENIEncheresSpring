@@ -34,26 +34,21 @@ public class EncheresRestController {
     public Enchere getEnchereById(@PathVariable long id) {return enchereService.getEnchereById(id);}
 
 
-    @PostMapping//("{articleId}/{utilisateurId}")
-    public Enchere postEnchere(@PathVariable long articleId,@PathVariable long utilisateurId, @RequestBody Enchere enchere) {
+    @PostMapping("{articleId}/{utilisateurId}")
+    public Enchere postEnchere(@PathVariable long articleId, @PathVariable long utilisateurId, @RequestBody Enchere enchere) {
+
+        // L'utilisateur ne doit pas etre le vendeur
 
 
+        Article article = articleService.getArticleById(articleId);
+        enchere.setArticle(article);
 
-            Article article = articleService.getArticleById(articleId);
-            enchere.setArticle(article);
+        Utilisateur utilisateur = utilisateurService.getUtilisateurById(utilisateurId);
+        enchere.setUtilisateur(utilisateur);
 
-            Utilisateur utilisateur = utilisateurService.getUtilisateurById(utilisateurId);
-            enchere.setUtilisateur(utilisateur);
-            //enchereService.addEnchere(enchere);
+        enchere.setDateEnchere(LocalDate.now());
 
-
-            enchere.setDateEnchere(LocalDate.now());
-            //enchere.setMontantEnchere(montant);
-
-            enchereService.addEnchere(enchere);
-
-
-
+        enchereService.addEnchere(enchere);
 
         return enchere;
     }

@@ -25,7 +25,6 @@ public class Article {
     @NotBlank
     private String nomArticle;
 
-
     private String description;
 
     private LocalDate dateDebutEncheres;
