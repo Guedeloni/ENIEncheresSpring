@@ -7,6 +7,8 @@ import fr.eni.eniencheres.bo.Utilisateur;
 import fr.eni.eniencheres.service.ArticleService;
 import fr.eni.eniencheres.service.EnchereService;
 import fr.eni.eniencheres.service.UtilisateurService;
+import fr.eni.eniencheres.util.ENIEncheresException;
+import fr.eni.eniencheres.util.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,10 +37,14 @@ public class EncheresRestController {
 
 
     @PostMapping("{articleId}/{utilisateurId}")
-    public Enchere postEnchere(@PathVariable long articleId, @PathVariable long utilisateurId, @RequestBody Enchere enchere) {
+    public Enchere postEnchere(@PathVariable long articleId, @PathVariable long utilisateurId, @RequestBody Enchere enchere) throws ENIEncheresException {
 
-        // L'utilisateur ne doit pas etre le vendeur
-
+        // L'utilisateur ne doit pas etre le vendeur :
+        // article ne doit pas etre ds. la liste des articles "vendus" (ou en cours) de l'utilisateur
+        List<Article> articleList = utilisateurService.getUtilisateurById(utilisateurId).getArticleVenduList();
+        if (articleList.contains(articleService.getArticleById(articleId))) {
+            throw new ENIEncheresException(Message.VENDEUR_NON_AUTORISE.showMsg());
+        }
 
         Article article = articleService.getArticleById(articleId);
         enchere.setArticle(article);
@@ -49,7 +55,6 @@ public class EncheresRestController {
         enchere.setDateEnchere(LocalDate.now());
 
         enchereService.addEnchere(enchere);
-
         return enchere;
     }
 
