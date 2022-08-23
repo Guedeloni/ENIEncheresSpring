@@ -17,7 +17,6 @@ public class UtilisateurRestController {
     @Autowired
     UtilisateurService utilisateurService;
 
-
     @GetMapping
     public List<Utilisateur> getListUtilisateur(){
         return utilisateurService.listeUtilisateur();

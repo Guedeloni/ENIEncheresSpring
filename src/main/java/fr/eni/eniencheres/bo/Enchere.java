@@ -32,7 +32,8 @@ public class Enchere {
     private Article article;
 
     @ManyToOne
-    @JsonManagedReference
+    @JsonIgnore
+//    @JsonManagedReference
     private Utilisateur utilisateur;
 
     public Enchere(long id, LocalDate dateEnchere, int montantEnchere, Article article, Utilisateur utilisateur) {
