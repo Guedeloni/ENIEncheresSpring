@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin()
 @RequestMapping("/api/utilisateurs")
 
 public class UtilisateurRestController {
 
     @Autowired
     UtilisateurService utilisateurService;
+
 
     @GetMapping
     public List<Utilisateur> getListUtilisateur(){
@@ -31,7 +32,7 @@ public class UtilisateurRestController {
 
     @DeleteMapping("/{id}")
     public void deleteUtilisateur(@PathVariable("id") Long id) {
-        if(id !=null) {
+        if(id != null) {
             utilisateurService.deleteUtilisateurById(id);
         }
     }
