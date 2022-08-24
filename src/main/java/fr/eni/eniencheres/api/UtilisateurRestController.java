@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin()
 @RequestMapping("/api/utilisateurs")
 
 public class UtilisateurRestController {
@@ -17,21 +17,15 @@ public class UtilisateurRestController {
     @Autowired
     UtilisateurService utilisateurService;
 
+
     @GetMapping
     public List<Utilisateur> getListUtilisateur(){
         return utilisateurService.listeUtilisateur();
     }
 
     @PostMapping
-    public Utilisateur postGenre(@RequestBody Utilisateur utilisateur) throws Exception {
+    public Utilisateur postUtilisateur(@RequestBody Utilisateur utilisateur) throws Exception {
         utilisateurService.addUtilisateur(utilisateur);
         return utilisateur;
-    }
-
-    @DeleteMapping("/{id}")
-    public void deleteUtilisateur(@PathVariable("id") Long id) {
-        if(id !=null) {
-            utilisateurService.deleteUtilisateurById(id);
-        }
     }
 }
