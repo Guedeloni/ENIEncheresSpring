@@ -32,7 +32,7 @@ public class UtilisateurRestController {
 
     @DeleteMapping("/{id}")
     public void deleteUtilisateur(@PathVariable("id") Long id) {
-        if(id !=null) {
+        if(id != null) {
             utilisateurService.deleteUtilisateurById(id);
         }
     }
