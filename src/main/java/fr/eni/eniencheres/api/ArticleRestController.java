@@ -7,6 +7,8 @@ import fr.eni.eniencheres.security.JwtUtils;
 import fr.eni.eniencheres.security.User;
 import fr.eni.eniencheres.service.ArticleService;
 import fr.eni.eniencheres.service.UtilisateurService;
+import fr.eni.eniencheres.util.ENIEncheresException;
+import fr.eni.eniencheres.util.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +37,7 @@ public class ArticleRestController {
     public Article getArticleById(@PathVariable long id) {return articleService.getArticleById(id);}
 
     @PostMapping
-    public Article postArticle(@AuthenticationPrincipal User currentUser, @RequestBody Article article) {
+    public Article postArticle(@RequestBody Article article, @AuthenticationPrincipal User currentUser) throws ENIEncheresException {
 
         // Si pas de date debut d'enchere ; date du jour par defaut
         if (article.getDateDebutEncheres() == null) {
@@ -46,12 +48,18 @@ public class ArticleRestController {
         article.setEtatVente(1);
 
         // Recuperation de l'id de l'utilisateur connecte
-        long utilisateurId = currentUser.getUtilisateur().getId();
+//        long utilisateurId = currentUser.getUtilisateur().getId();
         // Ajout a la liste des articles "vendus" (ou en cours de vente)
-        List<Article> articleVenduList = utilisateurService.getUtilisateurById(utilisateurId).getArticleVenduList();
+        List<Article> articleVenduList = utilisateurService.getUtilisateurById(2).getArticleVenduList();
         articleVenduList.add(article);
 
-        articleService.addArticle(article);
+        try {
+            articleService.addArticle(article);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            throw new ENIEncheresException(Message.PB_CREATION_ARTICLE.showMsg());
+        }
 
         return article;
     }
