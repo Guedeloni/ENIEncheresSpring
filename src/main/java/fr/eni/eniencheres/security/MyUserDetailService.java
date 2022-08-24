@@ -17,14 +17,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class MyUserDetailService implements UserDetailsService {
 
-    /*
-     * Plutôt que d'avoir une gestion des utilisateurs dans mon service MyUserDetailsService,
-     * Je vais utiliser MembreService pour recupérer les membres que j'ai ajouté via l'appli
-     */
-
-    // va être injecté par le constructeur (lorsqu'on définit un constructeur avec un argument qui correspond à un bean dans le contexte Spring, il est AUTOMATIQUEMENT injecté)
-    // cet type d'injection permet de garantir l'ordre d'instantiation des services
-
     private UtilisateurService utilisateurService;
 
     /**
