@@ -2,13 +2,16 @@ package fr.eni.eniencheres.api;
 
 
 import fr.eni.eniencheres.bo.Article;
-import fr.eni.eniencheres.bo.Categorie;
-import fr.eni.eniencheres.bo.Retrait;
+import fr.eni.eniencheres.bo.Utilisateur;
+import fr.eni.eniencheres.security.JwtUtils;
+import fr.eni.eniencheres.security.User;
 import fr.eni.eniencheres.service.ArticleService;
 import fr.eni.eniencheres.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -22,6 +25,8 @@ public class ArticleRestController {
     ArticleService articleService;
     @Autowired
     UtilisateurService utilisateurService;
+    @Autowired
+    JwtUtils jwtUtils;
 
     @GetMapping
     public List<Article> getlistArticle(){return articleService.listeArticle();}
@@ -29,8 +34,8 @@ public class ArticleRestController {
     @GetMapping("{id}")
     public Article getArticleById(@PathVariable long id) {return articleService.getArticleById(id);}
 
-    @PostMapping("{utilisateurId}")
-    public Article postArticle(@PathVariable long utilisateurId, @RequestBody Article article) throws Exception {
+    @PostMapping
+    public Article postArticle(@AuthenticationPrincipal User currentUser, @RequestBody Article article) {
 
         // Si pas de date debut d'enchere ; date du jour par defaut
         if (article.getDateDebutEncheres() == null) {
@@ -40,6 +45,8 @@ public class ArticleRestController {
         // Etat de vente a 1 (creation)
         article.setEtatVente(1);
 
+        // Recuperation de l'id de l'utilisateur connecte
+        long utilisateurId = currentUser.getUtilisateur().getId();
         // Ajout a la liste des articles "vendus" (ou en cours de vente)
         List<Article> articleVenduList = utilisateurService.getUtilisateurById(utilisateurId).getArticleVenduList();
         articleVenduList.add(article);
