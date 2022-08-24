@@ -46,5 +46,10 @@ public class UtilisateurJpaImpl implements UtilisateurService {
 
     }
 
+    @Override
+    public void updateUtilisateur(Utilisateur utilisateur) {
+        utilisateurRepository.save(utilisateur);
+    }
+
 
 }
