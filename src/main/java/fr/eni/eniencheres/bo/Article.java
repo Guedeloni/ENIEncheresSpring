@@ -51,7 +51,7 @@ public class Article {
 
     @OneToMany
     @JoinColumn(name = "article_id")
-    @JsonIgnore
+
     private List<Enchere> enchereList;
 
     @ManyToOne(cascade = CascadeType.PERSIST)

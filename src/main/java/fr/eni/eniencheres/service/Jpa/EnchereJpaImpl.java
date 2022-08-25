@@ -1,6 +1,7 @@
 package fr.eni.eniencheres.service.Jpa;
 
 import fr.eni.eniencheres.bo.Enchere;
+import fr.eni.eniencheres.bo.Utilisateur;
 import fr.eni.eniencheres.repository.EnchereRepository;
 import fr.eni.eniencheres.service.EnchereService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,10 @@ public class EnchereJpaImpl implements EnchereService {
     @Override
     public Enchere getEnchereById(long id) {
         return enchereRepository.findById(id).get();
+    }
+
+    @Override
+    public List<Enchere> getEncheresByUser(Utilisateur utilisateur) {
+        return enchereRepository.findByUtilisateurId(utilisateur.getId());
     }
 }
