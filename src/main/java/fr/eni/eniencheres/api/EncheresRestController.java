@@ -45,11 +45,11 @@ public class EncheresRestController {
 
         // L'utilisateur ne doit pas etre le vendeur :
         // article ne doit pas etre ds. la liste des articles "vendus" (ou en cours) de l'utilisateur
-        List<Article> articleList = utilisateurService.getUtilisateurById(utilisateurId).getArticleVenduList();
+        /*List<Article> articleList = utilisateurService.getUtilisateurById(utilisateurId).getArticleVenduList();
         if (articleList.contains(article)) {
             throw new ENIEncheresException(Message.VENDEUR_NON_AUTORISE.showMsg());
         }
-
+        */
         // Le montant doit etre superieur au prix initial (liste d'enchere de l'article vide)
         List<Enchere> enchereListFromArticle = article.getEnchereList();
         if (enchereListFromArticle.isEmpty()) {

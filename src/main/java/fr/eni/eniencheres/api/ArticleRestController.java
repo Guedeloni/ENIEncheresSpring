@@ -49,11 +49,8 @@ public class ArticleRestController {
         // Etat de vente a 1 (creation)
         article.setEtatVente(1);
 
-        // Recuperation de l'id de l'utilisateur connecte
-        long utilisateurId = currentUser.getUtilisateur().getId();
-        // Ajout a la liste des articles "vendus" (ou en cours de vente)
-        List<Article> articleVenduList = utilisateurService.getUtilisateurById(utilisateurId).getArticleVenduList();
-        articleVenduList.add(article);
+        // Ajout de l'utilisateur connecte en tant que vendeur ds. article
+        article.setVendeur(currentUser.getUtilisateur());
 
         // Adresse de retrait par defaut = adresse de l'utilisateur connecte
         if (article.getRetrait().getRue()           == "" ||
@@ -74,6 +71,7 @@ public class ArticleRestController {
 
         return article;
     }
+
     @DeleteMapping("/{id}")
     public void deleteArticle(@PathVariable("id") Long id) {
         if(id !=null) {

@@ -43,13 +43,11 @@ public class Article {
 
     private String imageURL;
 
-//    @ManyToOne
-//    @JsonIgnore
-//    private Utilisateur acheteur;
-//
-//    @ManyToOne
-//    @JsonIgnore
-//    private Utilisateur vendeur;
+    @ManyToOne
+    private Utilisateur acheteur;
+
+    @ManyToOne
+    private Utilisateur vendeur;
 
     @OneToMany
     @JoinColumn(name = "article_id")
