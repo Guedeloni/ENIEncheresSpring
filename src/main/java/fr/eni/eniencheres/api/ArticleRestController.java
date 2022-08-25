@@ -3,8 +3,6 @@ package fr.eni.eniencheres.api;
 
 import fr.eni.eniencheres.bo.Article;
 import fr.eni.eniencheres.bo.Retrait;
-import fr.eni.eniencheres.bo.Utilisateur;
-import fr.eni.eniencheres.security.JwtUtils;
 import fr.eni.eniencheres.security.User;
 import fr.eni.eniencheres.service.ArticleService;
 import fr.eni.eniencheres.service.RetraitService;
@@ -15,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -29,8 +26,6 @@ public class ArticleRestController {
     ArticleService articleService;
     @Autowired
     UtilisateurService utilisateurService;
-    @Autowired
-    RetraitService retraitService;
 
     @GetMapping
     public List<Article> getlistArticle(){return articleService.listeArticle();}
@@ -53,6 +48,7 @@ public class ArticleRestController {
         article.setVendeur(currentUser.getUtilisateur());
 
         // Adresse de retrait par defaut = adresse de l'utilisateur connecte
+        long utilisateurId = currentUser.getUtilisateur().getId();
         if (article.getRetrait().getRue()           == "" ||
             article.getRetrait().getCodePostal()    == "" ||
             article.getRetrait().getVille()         == "") {
