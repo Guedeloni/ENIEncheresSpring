@@ -2,10 +2,12 @@ package fr.eni.eniencheres.api;
 
 
 import fr.eni.eniencheres.bo.Article;
+import fr.eni.eniencheres.bo.Retrait;
 import fr.eni.eniencheres.bo.Utilisateur;
 import fr.eni.eniencheres.security.JwtUtils;
 import fr.eni.eniencheres.security.User;
 import fr.eni.eniencheres.service.ArticleService;
+import fr.eni.eniencheres.service.RetraitService;
 import fr.eni.eniencheres.service.UtilisateurService;
 import fr.eni.eniencheres.util.ENIEncheresException;
 import fr.eni.eniencheres.util.Message;
@@ -28,7 +30,7 @@ public class ArticleRestController {
     @Autowired
     UtilisateurService utilisateurService;
     @Autowired
-    JwtUtils jwtUtils;
+    RetraitService retraitService;
 
     @GetMapping
     public List<Article> getlistArticle(){return articleService.listeArticle();}
@@ -47,21 +49,29 @@ public class ArticleRestController {
         // Etat de vente a 1 (creation)
         article.setEtatVente(1);
 
-        // Recuperation de l'id de l'utilisateur connecte
-        long utilisateurId = currentUser.getUtilisateur().getId();
-
+        // Ajout de l'utilisateur connecte en tant que vendeur ds. article
         article.setVendeur(currentUser.getUtilisateur());
+
+        // Adresse de retrait par defaut = adresse de l'utilisateur connecte
+        if (article.getRetrait().getRue()           == "" ||
+            article.getRetrait().getCodePostal()    == "" ||
+            article.getRetrait().getVille()         == "") {
+            Retrait retrait = new Retrait(utilisateurService.getUtilisateurById(utilisateurId).getRue(),
+                                        utilisateurService.getUtilisateurById(utilisateurId).getCodePostal(),
+                                        utilisateurService.getUtilisateurById(utilisateurId).getVille());
+            article.setRetrait(retrait);
+        }
 
         try {
             articleService.addArticle(article);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             throw new ENIEncheresException(Message.PB_CREATION_ARTICLE.showMsg());
         }
 
         return article;
     }
+
     @DeleteMapping("/{id}")
     public void deleteArticle(@PathVariable("id") Long id) {
         if(id !=null) {

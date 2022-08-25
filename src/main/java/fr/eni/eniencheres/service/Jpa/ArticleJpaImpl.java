@@ -2,6 +2,7 @@ package fr.eni.eniencheres.service.Jpa;
 
 import fr.eni.eniencheres.bo.Article;
 import fr.eni.eniencheres.repository.ArticleRepository;
+import fr.eni.eniencheres.repository.RetraitRepository;
 import fr.eni.eniencheres.service.ArticleService;
 
 import org.springframework.beans.factory.annotation.Autowired;

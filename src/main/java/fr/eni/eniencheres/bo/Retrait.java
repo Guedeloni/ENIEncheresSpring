@@ -1,10 +1,7 @@
 package fr.eni.eniencheres.bo;
 
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -14,6 +11,7 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 
 public class Retrait {
 
@@ -30,8 +28,7 @@ public class Retrait {
     @NotBlank
     private String ville;
 
-    public Retrait(long id, String rue, String codePostal, String ville) {
-        this.id = id;
+    public Retrait(String rue, String codePostal, String ville) {
         this.rue = rue;
         this.codePostal = codePostal;
         this.ville = ville;
