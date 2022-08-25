@@ -2,6 +2,7 @@ package fr.eni.eniencheres.service;
 
 import fr.eni.eniencheres.bo.Enchere;
 import fr.eni.eniencheres.bo.Retrait;
+import fr.eni.eniencheres.bo.Utilisateur;
 
 import java.util.List;
 
@@ -13,4 +14,6 @@ public interface EnchereService {
     public List <Enchere> listEnchere();
 
     public Enchere getEnchereById(long id);
+
+    List<Enchere> getEncheresByUser(Utilisateur utilisateur);
 }
