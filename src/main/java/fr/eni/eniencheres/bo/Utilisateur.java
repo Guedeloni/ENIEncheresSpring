@@ -62,16 +62,18 @@ public class Utilisateur {
     @JsonIgnore
     private List<Enchere> enchereList;
 
-    @OneToMany
+    /*
+
+      //  @OneToMany
     @JoinColumn(name = "acheteur_id")
-//    @JsonManagedReference
+   @JsonManagedReference
     private  List <Article> articleAcheteList;
 
-    @OneToMany
+  @OneToMany
     @JoinColumn(name = "vendeur_id")
-//    @JsonManagedReference
+     @JsonBackReference
     private  List <Article> articleVenduList;
-
+*/
 
 
     @Override

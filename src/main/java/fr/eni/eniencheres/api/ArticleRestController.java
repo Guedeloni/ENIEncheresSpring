@@ -48,10 +48,9 @@ public class ArticleRestController {
         article.setEtatVente(1);
 
         // Recuperation de l'id de l'utilisateur connecte
-//        long utilisateurId = currentUser.getUtilisateur().getId();
-        // Ajout a la liste des articles "vendus" (ou en cours de vente)
-        List<Article> articleVenduList = utilisateurService.getUtilisateurById(2).getArticleVenduList();
-        articleVenduList.add(article);
+        long utilisateurId = currentUser.getUtilisateur().getId();
+
+        article.setVendeur(currentUser.getUtilisateur());
 
         try {
             articleService.addArticle(article);

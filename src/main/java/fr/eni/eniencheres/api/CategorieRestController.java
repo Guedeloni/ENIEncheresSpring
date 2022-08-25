@@ -4,6 +4,7 @@ import fr.eni.eniencheres.bo.Categorie;
 import fr.eni.eniencheres.service.CategorieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -27,8 +28,15 @@ public class CategorieRestController {
     @PostMapping
 
     public Categorie postCategorie(@RequestBody Categorie categorie) throws Exception {
+            try {  categorieService.addCategorie(categorie);}
 
-            categorieService.addCategorie(categorie);
+            catch (Exception e )
+            {
+                throw new ResponseStatusException(
+                        401, "Categorie deja existante",e);
+            }
+
+
 
             return categorie;
     }

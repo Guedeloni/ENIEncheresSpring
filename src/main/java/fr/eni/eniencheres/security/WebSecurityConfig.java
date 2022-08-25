@@ -20,6 +20,7 @@ public class WebSecurityConfig {
                 .antMatchers(HttpMethod.GET, "/**").permitAll() // les requêtes GET
                 .antMatchers(HttpMethod.OPTIONS, "/api/**").permitAll() // les requêtes OPTIONS
                 .antMatchers("/api/login").permitAll() // les requêtes pour se loguer
+                .antMatchers("/api/inscription").permitAll()
                 // sinon, besoin d'être authentifie (c'est fait au niveau du filtre avec : SecurityContextHolder.getContext().setAuthentication(authenticationToken);)
                 .anyRequest().authenticated()
                 .and().csrf().ignoringAntMatchers("/api/**");
