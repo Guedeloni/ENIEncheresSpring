@@ -56,7 +56,7 @@ public class Article {
     @JsonIgnore
     private List<Enchere> enchereList;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Retrait retrait;
 
     @ManyToOne
