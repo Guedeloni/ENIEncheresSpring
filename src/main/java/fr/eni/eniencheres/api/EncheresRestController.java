@@ -13,8 +13,11 @@ import fr.eni.eniencheres.util.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.expression.Lists;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -34,10 +37,12 @@ public class EncheresRestController {
     public List<Enchere> getlistEnchere(){return enchereService.listEnchere();}
 
     @GetMapping("{articleId}")
-    public List<Enchere> getEnchereByArticleId(@PathVariable long articleId) {
+    public Enchere getLastEnchereByArticleId(@PathVariable long articleId) {
         Article article = articleService.getArticleById(articleId);
-        return article.getEnchereList();
+        List<Enchere> enchereList = article.getEnchereList() ;
+        return enchereList.get(enchereList.size()-1);
     }
+
 
     @PostMapping("/{articleId}")
     public Enchere postEnchere(@PathVariable long articleId, @AuthenticationPrincipal User currentUser,
