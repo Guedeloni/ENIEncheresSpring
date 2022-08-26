@@ -3,7 +3,6 @@ package fr.eni.eniencheres.service.Jpa;
 import fr.eni.eniencheres.bo.Categorie;
 import fr.eni.eniencheres.repository.CategorieRepository;
 import fr.eni.eniencheres.service.CategorieService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +37,5 @@ public class CategorieJapImpl  implements CategorieService {
     public void deleteCategorieeById(Long id) {
         categorieRepository.findById(id);
     }
-
 
 }

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CategorieConverter  implements Converter <String, Categorie>{
-
     @Autowired
     CategorieService categorieService;
 
@@ -17,7 +16,5 @@ public class CategorieConverter  implements Converter <String, Categorie>{
         long id = Integer.parseInt(idAuFormatTexte);
         return categorieService.getCategorieById(id);
     }
-
-
 
 }

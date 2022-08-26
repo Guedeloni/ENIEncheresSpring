@@ -51,5 +51,4 @@ public class UtilisateurJpaImpl implements UtilisateurService {
         utilisateurRepository.save(utilisateur);
     }
 
-
 }

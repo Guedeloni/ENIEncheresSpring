@@ -1,8 +1,6 @@
 package fr.eni.eniencheres.bo;
 
-
 import lombok.*;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
@@ -12,7 +10,6 @@ import javax.validation.constraints.NotBlank;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Retrait {
 
     @Id

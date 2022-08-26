@@ -1,7 +1,6 @@
 package fr.eni.eniencheres.bo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,7 +21,6 @@ public class Enchere {
     private long id;
 
     private LocalDate dateEnchere = LocalDate.now();
-
     private int montantEnchere;
 
     @ManyToOne

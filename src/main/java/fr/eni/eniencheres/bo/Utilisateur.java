@@ -1,13 +1,8 @@
 package fr.eni.eniencheres.bo;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
-import org.hibernate.validator.constraints.CreditCardNumber;
-
 import javax.persistence.*;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
@@ -57,6 +52,8 @@ public class Utilisateur {
 
     private boolean admin;
 
+    private String avatar; // image
+
     @OneToMany
     @JoinColumn(name = "utilisateur_id")
     @JsonIgnore
@@ -75,14 +72,13 @@ public class Utilisateur {
     private  List <Article> articleVenduList;
 */
 
-
     @Override
     public boolean equals(Object utilisateur) {
         String pseudo = ((Utilisateur) utilisateur).getPseudo();
         return this.pseudo.equals(pseudo);
     }
 
-    public Utilisateur(long id, String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse, long credit, boolean admin) {
+    public Utilisateur(long id, String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse, long credit, boolean admin, String avatar) {
         this.id = id;
         this.pseudo = pseudo;
         this.nom = nom;
@@ -95,5 +91,6 @@ public class Utilisateur {
         this.motDePasse = motDePasse;
         this.credit = credit;
         this.admin = admin;
+        this.avatar = avatar;
     }
 }

@@ -1,18 +1,15 @@
 package fr.eni.eniencheres.api;
 
-
 import fr.eni.eniencheres.bo.Article;
 import fr.eni.eniencheres.bo.Retrait;
 import fr.eni.eniencheres.security.User;
 import fr.eni.eniencheres.service.ArticleService;
-import fr.eni.eniencheres.service.RetraitService;
 import fr.eni.eniencheres.service.UtilisateurService;
 import fr.eni.eniencheres.util.ENIEncheresException;
 import fr.eni.eniencheres.util.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -20,7 +17,6 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("/api/articles")
 public class ArticleRestController {
-
 
     @Autowired
     ArticleService articleService;
