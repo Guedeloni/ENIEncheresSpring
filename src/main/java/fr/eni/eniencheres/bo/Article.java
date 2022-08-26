@@ -51,7 +51,6 @@ public class Article {
 
     @OneToMany
     @JoinColumn(name = "article_id")
-
     private List<Enchere> enchereList;
 
     @ManyToOne(cascade = CascadeType.PERSIST)

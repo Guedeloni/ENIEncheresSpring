@@ -50,15 +50,21 @@ public class EncheresRestController {
 
         Article article = articleService.getArticleById(articleId);
 
-        // L'utilisateur ne doit pas etre le vendeur :
-        // article ne doit pas etre ds. la liste des articles "vendus" (ou en cours) de l'utilisateur
-        Utilisateur utilisateur = currentUser.getUtilisateur();
-        /*List<Article> articleList = utilisateur.getArticleVenduList();
-        if (articleList.contains(article)) {
-            throw new ENIEncheresException(Message.VENDEUR_NON_AUTORISE.showMsg());
+        // L'enchère doit avoir debutee et ne pas etre finie
+        // La date du jour doit etre >= date debut enchere
+        if (LocalDate.now().compareTo(article.getDateDebutEncheres()) == -1) {
+            throw new ENIEncheresException(Message.ENCHERE_NON_DEBUTEE.showMsg());
+        }
+        // et date du jour doit etre <= date fin enchere
+        if (LocalDate.now().compareTo(article.getDateFinEncheres()) == 1) {
+            throw new ENIEncheresException(Message.ENCHERE_TERMINEE.showMsg());
         }
 
-         */
+        // L'utilisateur ne doit pas etre le vendeur :
+        Utilisateur utilisateur = currentUser.getUtilisateur();
+        if (utilisateur.equals(article.getVendeur())) {
+            throw new ENIEncheresException(Message.VENDEUR_NON_AUTORISE.showMsg());
+        }
 
         // Le montant doit etre superieur au prix initial (liste d'enchere de l'article vide)
         List<Enchere> enchereListFromArticle = article.getEnchereList();
@@ -83,6 +89,11 @@ public class EncheresRestController {
 
         // Initialisation date enchere a la date du jour
         enchere.setDateEnchere(LocalDate.now());
+
+        // Si premiere enchere, passage de l'article a l'etat "en cours" (2)
+        if (article.getEtatVente() == 1) {
+            article.setEtatVente(2);
+        }
 
         // Enregistrement enchere en DB
         enchereService.addEnchere(enchere);

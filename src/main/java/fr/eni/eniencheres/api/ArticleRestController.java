@@ -30,7 +30,7 @@ public class ArticleRestController {
     @GetMapping
     public List<Article> getlistArticle(){return articleService.listeArticle();}
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Article getArticleById(@PathVariable long id) {return articleService.getArticleById(id);}
 
     @PostMapping
