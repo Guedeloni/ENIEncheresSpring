@@ -1,7 +1,6 @@
 package fr.eni.eniencheres.service;
 
 import fr.eni.eniencheres.bo.Categorie;
-
 import java.util.List;
 
 public interface CategorieService {

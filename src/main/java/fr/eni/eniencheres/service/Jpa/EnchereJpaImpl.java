@@ -12,13 +12,11 @@ import java.util.List;
 
 public class EnchereJpaImpl implements EnchereService {
 
-
     @Autowired
     EnchereRepository enchereRepository;
 
     @Override
     public void addEnchere(Enchere enchere) {
-
         enchereRepository.save(enchere);
 
     }

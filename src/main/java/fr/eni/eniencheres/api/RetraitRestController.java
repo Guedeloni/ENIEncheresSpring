@@ -1,24 +1,18 @@
 package fr.eni.eniencheres.api;
 
-
 import fr.eni.eniencheres.bo.Retrait;
 import fr.eni.eniencheres.service.RetraitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/api/retraits")
-
 public class RetraitRestController {
-
-
 
     @Autowired
     private RetraitService retraitService;
-
 
     @GetMapping
     public List<Retrait> getlistRetrait(){return retraitService.listRetrait();}

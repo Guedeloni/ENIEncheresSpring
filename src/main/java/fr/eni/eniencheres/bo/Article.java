@@ -1,10 +1,6 @@
 package fr.eni.eniencheres.bo;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
-
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
@@ -26,7 +22,6 @@ public class Article {
     private String nomArticle;
 
     private String description;
-
     private LocalDate dateDebutEncheres;
 
     @Future

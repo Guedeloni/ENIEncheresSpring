@@ -28,7 +28,7 @@ public class MyUserDetailService implements UserDetailsService {
 
         try {
             utilisateurService.addUtilisateur(
-                    new Utilisateur(1, "admin","admin","thomas" ,"admin@admin.com", "0611111111", "rue dfees admins", "78554", "Nantes", "admin",450, true));
+                    new Utilisateur(1, "admin","admin","thomas" ,"admin@admin.com", "0611111111", "rue dfees admins", "78554", "Nantes", "admin",450, true, ""));
         } catch (Exception e) {
             System.out.println("Utilisateur admin déjà existant");
         }

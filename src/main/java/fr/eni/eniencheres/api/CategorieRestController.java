@@ -11,7 +11,6 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/api/categories")
-
 public class CategorieRestController {
 
     @Autowired
@@ -24,7 +23,6 @@ public class CategorieRestController {
     @GetMapping("{id}")
      public Categorie getCategorieById(@PathVariable long id) {return categorieService.getCategorieById(id);}
 
-
     @PostMapping
 
     public Categorie postCategorie(@RequestBody Categorie categorie) throws Exception {
@@ -36,8 +34,6 @@ public class CategorieRestController {
                         401, "Categorie deja existante",e);
             }
 
-
-
             return categorie;
     }
 
@@ -46,7 +42,6 @@ public class CategorieRestController {
         if (id != null) {
             categorieService.deleteCategorieeById(id);
         }
-
     }
 
 }

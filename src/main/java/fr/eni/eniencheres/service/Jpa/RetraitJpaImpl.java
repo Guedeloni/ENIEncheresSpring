@@ -11,16 +11,11 @@ import java.util.List;
 
 public class RetraitJpaImpl implements RetraitService {
 
-
     @Autowired
     RetraitRepository retraitRepository;
 
-
     @Override
     public void addRetrait(Retrait retrait) { retraitRepository.save(retrait);}
-
-
-
 
     @Override
     public List<Retrait> listRetrait() {
