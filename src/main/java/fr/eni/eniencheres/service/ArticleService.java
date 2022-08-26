@@ -10,6 +10,8 @@ public interface ArticleService {
 
     List<Article> listeArticle();
 
+    List<Article> listeArticleBySelection(int selection);
+
     public Article getArticleById(long id);
 
     public  void deleteArticleById(Long id);

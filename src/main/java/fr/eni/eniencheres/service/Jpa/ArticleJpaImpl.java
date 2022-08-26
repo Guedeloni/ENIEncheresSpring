@@ -26,14 +26,25 @@ public class ArticleJpaImpl implements ArticleService {
     }
 
     @Override
+    public List<Article> listeArticleBySelection(int selection) {
+        switch (selection) {
+            case 1  :
+            case 2  :
+            case 3  : {
+                List<Article> listArticle = articleRepository.findByEtatVente(selection);
+                return listArticle;
+            }
+            default: return this.listeArticle();
+        }
+    }
+
+    @Override
     public Article getArticleById(long id) {
         return articleRepository.findById(id).get();
     }
 
     @Override
-    public void deleteArticleById(Long id) { articleRepository.deleteById(id);
-
-    }
+    public void deleteArticleById(Long id) { articleRepository.deleteById(id); }
 
     @Override
     public void updateArticle(Article article) {

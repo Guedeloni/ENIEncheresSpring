@@ -24,7 +24,10 @@ public class ArticleRestController {
     UtilisateurService utilisateurService;
 
     @GetMapping
-    public List<Article> getlistArticle(){return articleService.listeArticle();}
+    public List<Article> getListArticle(){return articleService.listeArticle();}
+
+    @GetMapping("/select/{selection}")
+    public List<Article> getSelectionListArticle(@PathVariable int selection){ return articleService.listeArticleBySelection(selection); }
 
     @GetMapping("/{id}")
     public Article getArticleById(@PathVariable long id) {return articleService.getArticleById(id);}
