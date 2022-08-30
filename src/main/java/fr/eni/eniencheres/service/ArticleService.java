@@ -1,6 +1,7 @@
 package fr.eni.eniencheres.service;
 
 import fr.eni.eniencheres.bo.Article;
+import fr.eni.eniencheres.bo.Utilisateur;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public interface ArticleService {
 
     List<Article> listeArticle();
 
-    List<Article> listeArticleBySelection(int selection);
+    List<Article> listeArticleByProfilAndSelection(Utilisateur vendeur, int selection);
 
     public Article getArticleById(long id);
 

@@ -2,6 +2,7 @@ package fr.eni.eniencheres.api;
 
 import fr.eni.eniencheres.bo.Article;
 import fr.eni.eniencheres.bo.Retrait;
+import fr.eni.eniencheres.bo.Utilisateur;
 import fr.eni.eniencheres.security.User;
 import fr.eni.eniencheres.service.ArticleService;
 import fr.eni.eniencheres.service.UtilisateurService;
@@ -26,8 +27,11 @@ public class ArticleRestController {
     @GetMapping
     public List<Article> getListArticle(){return articleService.listeArticle();}
 
-    @GetMapping("/select/{selection}")
-    public List<Article> getSelectionListArticle(@PathVariable int selection){ return articleService.listeArticleBySelection(selection); }
+    @GetMapping("/{profilId}/{selection}")
+    public List<Article> getSelectionListArticleByProfil(@PathVariable long profilId, @PathVariable int selection) {
+        Utilisateur vendeur = utilisateurService.getUtilisateurById(profilId);
+        return articleService.listeArticleByProfilAndSelection(vendeur, selection);
+    }
 
     @GetMapping("/{id}")
     public Article getArticleById(@PathVariable long id) {return articleService.getArticleById(id);}
